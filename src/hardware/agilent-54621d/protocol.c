@@ -360,6 +360,8 @@ SR_PRIV int agilent_54621d_init_device(struct sr_dev_inst *sdi)
 	if(model_index == -1){
 		sr_dbg("Unsupported device.");
 		return SR_ERR_NA;
+	}else{
+		sr_dbg("Device Identified");
 	}
 
 	devc->analog_groups = g_malloc0(sizeof(struct sr_channel_group*) *scope_models[model_index].analog_channels);

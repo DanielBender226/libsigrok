@@ -99,8 +99,11 @@ static struct sr_dev_inst *probe_device(struct sr_scpi_dev_inst *scpi)
 		goto fail;
 	}
 
-	if (std_str_idx_s(hw_info->manufacturer, ARRAY_AND_SIZE(manufacturers)) < 0)
+	if (std_str_idx_s(hw_info->manufacturer, ARRAY_AND_SIZE(manufacturers)) < 0){
+		sr_debug("IncorrectManufacturer");
 		goto fail;
+	}
+		
 
 	sdi = g_malloc0(sizeof(struct sr_dev_inst));
 	sdi->vendor = g_strdup(hw_info->manufacturer);
