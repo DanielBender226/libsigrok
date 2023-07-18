@@ -131,7 +131,7 @@ static const char *logic_threshold[] = {
 };
 
 static const char *trigger_sources[] = {
-	"CHAN1", "CHAN2",
+	"CHAN1", "CHAN2","CHAN3","CHAN4",
 	"LINE", "EXT", "NONE",
 	"DIG0", "DIG1", "DIG2", "DIG3", "DIG4", "DIG5", "DIG6", "DIG7", "DIG8", "DIG9", "DIG10", "DIG11", "DIG12", "DIG13", "DIG14", "DIG15",
 };
@@ -210,7 +210,7 @@ static const uint64_t vdivs[][2] = {
 };
 
 static const char *scope_analog_channel_names[] = {
-	"CHAN1", "CHAN2",
+	"CHAN1", "CHAN2","CHAN3","CHAN4",
 };
 
 static const char *scope_digital_channel_names[] = {
@@ -238,6 +238,50 @@ static struct scope_config scope_models[] = {
 		.num_devopts_cg_digital = ARRAY_SIZE(devopts_cg_digital),
 
 		.digital_pods = 2,
+
+		.coupling_options = &coupling_options,
+		.num_coupling_options = ARRAY_SIZE(coupling_options),
+
+		.logic_threshold = &logic_threshold,
+		.num_logic_threshold = ARRAY_SIZE(logic_threshold),
+		.logic_threshold_for_pod = TRUE,
+
+		.trigger_sources = &trigger_sources,
+		.num_trigger_sources = ARRAY_SIZE(trigger_sources),
+
+		.trigger_slopes = &scope_trigger_slopes,
+		.num_trigger_slopes = ARRAY_SIZE(scope_trigger_slopes),
+
+		.timebases = &scope_timebases,
+		.num_timebases = ARRAY_SIZE(scope_timebases),
+
+		.vdivs = &vdivs,
+		.num_vdivs = ARRAY_SIZE(vdivs),
+
+		.num_xdivs = 10,
+		.num_ydivs = 8,
+
+		.scpi_dialect = &agilent_scpi_dialect,
+	},
+	{
+		/* Agilent 54621D/54622D Models only differ in Bandwidth; everything else should be the same*/
+		.name = {"54624A", NULL},
+		.analog_channels = 4,
+		.digital_channels = 0,
+
+		.analog_names = &scope_analog_channel_names,
+		.digital_names = &scope_digital_channel_names,
+
+		.devopts = &devopts,
+		.num_devopts = ARRAY_SIZE(devopts),
+
+		.devopts_cg_analog = &devopts_cg_analog,
+		.num_devopts_cg_analog = ARRAY_SIZE(devopts_cg_analog),
+
+		.devopts_cg_digital = &devopts_cg_digital,
+		.num_devopts_cg_digital = ARRAY_SIZE(devopts_cg_digital),
+
+		.digital_pods = 0,
 
 		.coupling_options = &coupling_options,
 		.num_coupling_options = ARRAY_SIZE(coupling_options),
