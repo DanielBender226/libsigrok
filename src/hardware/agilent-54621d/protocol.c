@@ -366,7 +366,7 @@ SR_PRIV int agilent_54621d_init_device(struct sr_dev_inst *sdi)
 
 	devc->analog_groups = g_malloc0(sizeof(struct sr_channel_group*) *scope_models[model_index].analog_channels);
 	devc->digital_groups = g_malloc0(sizeof(struct sr_channel_group*) *scope_models[model_index].digital_pods);
-	if(!devc->analog_groups || !devc->digital_groups){
+	if(!devc->analog_groups || (!devc->digital_groups && scope_models[model_index].digital_pods)){
 		g_free(devc->analog_groups);
 		g_free(devc->digital_groups);
 		return SR_ERR_MALLOC;
