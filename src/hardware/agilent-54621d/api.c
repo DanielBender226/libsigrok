@@ -100,7 +100,7 @@ static struct sr_dev_inst *probe_device(struct sr_scpi_dev_inst *scpi)
 	}
 
 	if (std_str_idx_s(hw_info->manufacturer, ARRAY_AND_SIZE(manufacturers)) < 0){
-		sr_debug("IncorrectManufacturer");
+		sr_dbg("IncorrectManufacturer");
 		goto fail;
 	}
 		
